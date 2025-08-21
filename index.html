@@ -11,16 +11,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="form">
+    <div class="title">Tic Tac Toe</div>
+    <div class="inputX"><input type="text" id="inputX" name="namePlayerX" placeholder="Player X"></div>
+    <div class="inputO"><input type="text" id="inputO" name="namePlayerO" placeholder="Player O"></div>
+    <button type="button" class="btnStart"> START GAME</button>
+</div>
+
 <div class="gamebox">
     <div class="title">Tic Tac Toe</div>
     <div class="players">
-        <div class="player1">Player X:<div class="scoreX">0</div></div>
-        <div class="player2">Player O:<div class="scoreO">0</div></div>
+        <div class="player"><div class="player1">Player X:</div><div class="scoreX">0</div></div>
+        <div class="player"><div class="player2">Player O:</div><div class="scoreO">0</div></div>
     </div>
     <div id="board">
         
     </div>
-    <button class="reset">RESET</button>
+    <button type="button" class="newRound">NEW ROUND</button>
+    <button type="button" class="reset">RESET</button>
 </div>
 
     <script src="script.js"></script>

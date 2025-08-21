@@ -1,5 +1,33 @@
 const Game = (function(){
 
+const form = document.querySelector(".form");
+const inputX = document.querySelector("#inputX");
+const inputO = document.querySelector("#inputO");
+const playerX = document.querySelector(".player1");
+const playerO = document.querySelector(".player2");
+const btnStart = document.querySelector(".btnStart");
+const gamebox = document.querySelector(".gamebox");
+
+
+btnStart.addEventListener("click", function(){
+    let playerXname = inputX.value;
+    let playerOname = inputO.value;
+    if (inputX.value === ""){
+        inputX.value = "Player X";
+    }else{
+    playerX.textContent = playerXname + ":";
+    }
+    if (inputO.value === ""){
+        inputO.value = "Player O";
+    }else{
+    playerO.textContent = playerOname + ":";
+    }
+    form.style.display = "none";
+    gamebox.style.display = "flex";
+})
+
+
+
 const newPlayer = function(playerName, symbol, color){
         return{
             playerName : playerName,
@@ -47,6 +75,7 @@ checkWin(symbol) {
 
 let currentPlayer = X;
 
+const newRound = document.querySelector(".newRound");
 const resetBtn = document.querySelector(".reset");
 const boardDiv = document.querySelector("#board");
 
@@ -61,7 +90,6 @@ function renderGameboard(){
             const cellDiv = document.createElement('div');
             cellDiv.classList.add("cell");
             cellDiv.textContent = cell;
-
             
             cellDiv.addEventListener("click", function(){
                 function makeMove(index){
@@ -93,25 +121,29 @@ function renderGameboard(){
                        disableBoard();
                     };
                 }; checkWinner();  
-
-                if(srcX===5 || srcO ===5){
-                    document.querySelector(".reset").disabled = true;
-                }
         });
         boardDiv.appendChild(cellDiv);       
     }); 
+    resetBtn.addEventListener("click", function(){
+    boardDiv.innerHTML = "";
+    Gameboard.board = [];
+    Gameboard.initBoard();
+    renderGameboard();
+    scoreO.textContent = "0";
+    scoreX.textContent = "0";
+    console.log(Gameboard.board)
+})
 };
 Gameboard.initBoard();
 renderGameboard();
 
-resetBtn.addEventListener("click", function(){
+newRound.addEventListener("click", function(){
     boardDiv.innerHTML = "";
     Gameboard.board = [];
     Gameboard.initBoard();
     renderGameboard();
     console.log(Gameboard.board)
 })
-
 
 console.log(Gameboard.board)
 
